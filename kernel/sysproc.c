@@ -91,3 +91,9 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+uint64
+sys_hello(void) {
+    printf("I am Akileswaran ,2023115037 OS assignment using xv6");
+    return 0;
+}
+
