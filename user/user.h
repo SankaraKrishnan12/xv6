@@ -43,3 +43,13 @@ void* malloc(uint);
 void free(void*);
 int hello(void);
 
+// Add these function prototypes
+int create_philosopher(void (*fcn)(void *), void *arg);
+void sleep_philosopher(int duration);
+void think_philosopher(int duration);
+void eat_philosopher(int duration);
+
+int zip(const char* source, const char* dest);
+int unzip(const char* source, const char* dest);
+
+int diff(const char *path1, const char *path2);

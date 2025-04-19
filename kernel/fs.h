@@ -58,3 +58,4 @@ struct dirent {
   char name[DIRSIZ];
 };
 
+struct inode*   create(char*, short, short, short);

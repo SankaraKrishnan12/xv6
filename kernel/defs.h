@@ -77,9 +77,12 @@ int             piperead(struct pipe*, uint64, int);
 int             pipewrite(struct pipe*, uint64, int);
 
 // printf.c
-int            printf(char*, ...) __attribute__ ((format (printf, 1, 2)));
+int             printf(char*, ...) __attribute__ ((format (printf, 1, 2)));
 void            panic(char*) __attribute__((noreturn));
 void            printfinit(void);
+void            debug_print(char*);
+void            print_hex(uint8);
+void            print_dec(int);   
 
 // proc.c
 int             cpuid(void);
@@ -140,6 +143,7 @@ void            argaddr(int, uint64 *);
 int             fetchstr(uint64, char*, int);
 int             fetchaddr(uint64, uint64*);
 void            syscall();
+extern uint64   sys_diff(void);
 
 // trap.c
 extern uint     ticks;
@@ -187,3 +191,7 @@ void            virtio_disk_intr(void);
 
 // number of elements in fixed-size array
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))
+
+// compression
+extern uint64             sys_zip(void);
+extern uint64             sys_unzip(void);

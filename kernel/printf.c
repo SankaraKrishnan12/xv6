@@ -176,3 +176,28 @@ printfinit(void)
   initlock(&pr.lock, "pr");
   pr.locking = 1;
 }
+
+// Simple hex digit conversion
+static char hex_digits[] = "0123456789abcdef";
+
+// Debug print a single byte as hex
+void print_hex(uint8 byte) {
+  consputc(hex_digits[byte >> 4]);
+  consputc(hex_digits[byte & 0xF]);
+}
+
+// Debug print a string
+void debug_print(char *s) {
+  for(; *s; s++)
+    consputc(*s);
+}
+
+void print_dec(int n) {
+  if (n < 0) {
+      consputc('-');
+      n = -n;
+  }
+  if (n / 10)
+      print_dec(n / 10);
+  consputc("0123456789"[n % 10]);
+}

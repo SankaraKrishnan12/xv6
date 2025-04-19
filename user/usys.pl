@@ -36,5 +36,7 @@ entry("getpid");
 entry("sbrk");
 entry("sleep");
 entry("uptime");
-entry("hello")
-
+entry("hello");
+entry("zip");
+entry("unzip");
+entry("diff");

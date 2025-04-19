@@ -97,3 +97,5 @@ sys_hello(void) {
     return 0;
 }
 
+
+// Similar implementations for think_philosopher and eat_philosopher

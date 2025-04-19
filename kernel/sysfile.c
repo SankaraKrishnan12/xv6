@@ -242,9 +242,10 @@ bad:
   return -1;
 }
 
-static struct inode*
+struct inode* 
 create(char *path, short type, short major, short minor)
 {
+  printf("create called: %s\n", path);
   struct inode *ip, *dp;
   char name[DIRSIZ];
 
