@@ -106,6 +106,8 @@ extern uint64 sys_hello(void);
 extern uint64 sys_zip(void);
 extern uint64 sys_unzip(void);
 extern uint64 sys_diff(void);
+extern uint64 sys_filedetails(void);
+
 // An array mapping syscall numbers from syscall.h
 // to the function that handles the system call.
 static uint64 (*syscalls[])(void) = {
@@ -134,6 +136,7 @@ static uint64 (*syscalls[])(void) = {
 [SYS_zip]     sys_zip,
 [SYS_unzip]   sys_unzip,
 [SYS_diff]    sys_diff,
+[SYS_filedetails] sys_filedetails,
 };
 
 void

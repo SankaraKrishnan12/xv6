@@ -19,21 +19,14 @@ void print_str(char *s) {
 static int compress(uint8 *input, uint8 *output, int length) {
     int out_pos = 0;
     int in_pos = 0;
-    const int max_out = length * 2;
+    const int max_out = PGSIZE;  // Use full page size
 
-    print_str("compressing: ");
-    for(int i = 0; i < (length > 16 ? 16 : length); i++) {
-        print_hex(input[i]);
-        consputc(' ');
-    }
-    print_str("\n");
-
-    while(in_pos < length && out_pos < max_out - 2) {
+    while(in_pos < length) {
         int best_len = 0;
         int best_pos = 0;
         int search_start = (in_pos > 255) ? in_pos - 255 : 0;
 
-        // Find longest match
+        // Find longest match (3+ bytes)
         for(int i = search_start; i < in_pos; i++) {
             int len = 0;
             while(in_pos + len < length && 
@@ -47,24 +40,16 @@ static int compress(uint8 *input, uint8 *output, int length) {
             }
         }
 
-        if(best_len > 1) {  // Encode match
+        if(best_len > 2) {  // Encode matches of 3+ bytes
             output[out_pos++] = best_pos;
             output[out_pos++] = best_len;
             in_pos += best_len;
-            
-            print_str("match: pos=");
-            print_hex(best_pos);
-            print_str(" len=");
-            print_hex(best_len);
-            print_str("\n");
         } else {  // Encode literal
             output[out_pos++] = 0;
             output[out_pos++] = input[in_pos++];
-            
-            print_str("literal: ");
-            print_hex(output[out_pos-1]);
-            print_str("\n");
         }
+
+        if(out_pos >= max_out) break;  // Prevent overflow
     }
     return out_pos;
 }

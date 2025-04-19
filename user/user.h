@@ -53,3 +53,29 @@ int zip(const char* source, const char* dest);
 int unzip(const char* source, const char* dest);
 
 int diff(const char *path1, const char *path2);
+
+// Add this struct definition
+struct file_details {
+    int inum;
+    short type;
+    short major;
+    short minor;
+    short nlink;
+    uint size;
+    char name[14]; 
+};
+
+// Add the function prototype
+int filedetails(const char *path, struct file_details *fd);
+
+#define T_DIR     1   // Directory
+#define T_FILE    2   // File
+#define T_DEVICE  3   // Device
+
+struct stat {
+  int dev;     // File system's disk device
+  uint ino;    // Inode number
+  short type;  // Type of file
+  short nlink; // Number of links to file
+  uint64 size; // Size of file in bytes
+};

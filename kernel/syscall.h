@@ -24,3 +24,4 @@
 #define SYS_zip    23
 #define SYS_unzip  24
 #define SYS_diff   25
+#define SYS_filedetails 26

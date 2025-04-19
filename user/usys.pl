@@ -40,3 +40,4 @@ entry("hello");
 entry("zip");
 entry("unzip");
 entry("diff");
+entry("filedetails");

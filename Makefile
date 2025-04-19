@@ -31,6 +31,8 @@ OBJS = \
   $K/virtio_disk.o \
   $K/zip.o \
   $K/diff.o \
+  $K/sysfiledetails.o \
+
 
 # riscv64-unknown-elf- or riscv64-linux-gnu-
 # perhaps in /opt/riscv/bin
@@ -148,6 +150,7 @@ UPROGS=\
 	$U/_zip\
 	$U/_unzip\
 	$U/_diff\
+	$U/_fdst\
 
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
